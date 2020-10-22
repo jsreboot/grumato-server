@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.testEntity.Customer" table="customer" schema="itcompany">
+        <id name="customerCode" column="customer_code"/>
+        <property name="surname" column="surname"/>
+        <property name="name" column="name"/>
+        <property name="patronymic" column="patronymic"/>
+        <property name="getCustomerCol" column="customercol"/>
+        <property name="company" column="company"/>
+        <property name="companyNumber" column="company_number"/>
+        <property name="id" column="id"/>
+    </class>
+</hibernate-mapping>

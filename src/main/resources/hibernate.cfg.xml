@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Настройки подключения к БД -->
+        <property name="hibernate.connection.username">admen</property>
+        <property name="hibernate.connection.password">A7749306Z++=mu52fe5N</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <property name="connection.url">jdbc:mysql://localhost:3306/itcompany?useUnicode=true&amp;serverTimezone=UTC</property>
+
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL диалект -->
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+
+        <!-- Включить автоматическое управление контекстом сессии -->
+        <property name="current_session_context_class">thread</property>
+
+
+
+        <!-- Вывод в консоль SQL-запросов -->
+        <property name="show_sql">true</property>
+        <property name="packagesToScan">com.example.entity</property>
+
+        <!-- Подключение объектов сущностей -->
+        <mapping resource="ClarificationOfOrderDetailsEntity.hbm.xml"/>
+        <mapping class="com.example.entity.Customer" resource="CostCalculationEntity.hbm.xml"/>
+        <mapping resource="CustomerEntity.hbm.xml"/>
+        <mapping resource="EmployeeOrderEntity.hbm.xml"/>
+        <mapping resource="EmployeesEntity.hbm.xml"/>
+        <mapping resource="OrdersEntity.hbm.xml"/>
+        <mapping resource="PriceListOfServicesAndCalculationOfCostEntity.hbm.xml"/>
+        <mapping resource="PriceListOfServicesEntity.hbm.xml"/>
+        <mapping resource="ProductEntity.hbm.xml"/>
+        <mapping resource="TechnicalTaskEntity.hbm.xml"/>
+        <mapping resource="ClarificationOfOrderDetails.hbm.xml"/>
+        <mapping resource="CostCalculation.hbm.xml"/>
+        <mapping resource="Customer.hbm.xml"/>
+        <mapping resource="EmployeeOrder.hbm.xml"/>
+        <mapping resource="Employees.hbm.xml"/>
+        <mapping resource="Login.hbm.xml"/>
+        <mapping resource="Orders.hbm.xml"/>
+        <mapping resource="PriceListOfServices.hbm.xml"/>
+        <mapping resource="PriceListOfServicesAndCalculationOfCost.hbm.xml"/>
+        <mapping resource="Product.hbm.xml"/>
+        <mapping resource="TechnicalTask.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="hibernate-mapping" type="hibernate-mappingType"/>
+  <xs:complexType name="columnType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="sql-type" use="optional"/>
+        <xs:attribute type="xs:string" name="length" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="key-propertyType">
+    <xs:sequence>
+      <xs:element type="columnType" name="column"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="composite-idType">
+    <xs:sequence>
+      <xs:element type="key-propertyType" name="key-property" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="mapped"/>
+    <xs:attribute type="xs:string" name="class"/>
+  </xs:complexType>
+  <xs:complexType name="propertyType">
+    <xs:sequence>
+      <xs:element type="columnType" name="column"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+  <xs:complexType name="classType">
+    <xs:sequence>
+      <xs:element type="composite-idType" name="composite-id"/>
+      <xs:element type="propertyType" name="property"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+    <xs:attribute type="xs:string" name="table"/>
+    <xs:attribute type="xs:string" name="schema"/>
+  </xs:complexType>
+  <xs:complexType name="hibernate-mappingType">
+    <xs:sequence>
+      <xs:element type="classType" name="class"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

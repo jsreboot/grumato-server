@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.entity.PriceListOfServicesAndCalculationOfCostEntity"
+           table="price_list_of_services_and_calculation_of_cost" schema="itcompany">
+        <composite-id mapped="true" class="com.example.entity.PriceListOfServicesAndCalculationOfCostEntityPK">
+            <key-property name="costCalculationOrderCost">
+                <column name="cost_calculation_order_cost" sql-type="varchar(50)" length="50"/>
+            </key-property>
+            <key-property name="priceListOfServicesServiceCode">
+                <column name="price_list_of_services_service_code" sql-type="varchar(45)" length="45"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

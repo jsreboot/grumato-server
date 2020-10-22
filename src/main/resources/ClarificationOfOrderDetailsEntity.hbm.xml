@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.entity.ClarificationOfOrderDetailsEntity" table="clarification_of_order_details"
+           schema="itcompany">
+        <composite-id mapped="true" class="com.example.entity.ClarificationOfOrderDetailsEntityPK">
+            <key-property name="customerCustomerCode" column="customer_customer_code"/>
+            <key-property name="ordersOrderCode" column="orders_order_code"/>
+        </composite-id>
+        <property name="clarification" column="clarification"/>
+    </class>
+</hibernate-mapping>

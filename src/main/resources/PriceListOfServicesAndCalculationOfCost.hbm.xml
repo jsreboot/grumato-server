@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.testEntity.PriceListOfServicesAndCalculationOfCost"
+           table="price_list_of_services_and_calculation_of_cost" schema="itcompany">
+        <composite-id mapped="true" class="com.example.testEntity.PriceListOfServicesAndCalculationOfCostPK">
+            <key-property name="costCalculationOrderCost" column="cost_calculation_order_cost"/>
+            <key-property name="priceListOfServicesServiceCode" column="price_list_of_services_service_code"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>
