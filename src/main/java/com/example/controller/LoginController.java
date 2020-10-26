@@ -56,6 +56,21 @@ public class LoginController {
         return new BaseResponse(result, status);
     }
 
+    @PostMapping("/auth")
+    public BaseResponse read(@RequestParam(defaultValue="SHARED_KEY") String key, @RequestBody LoginRequest request) {
+        String status = "";
+        String result = "";
+        try {
+            Login login = request.getLogin();
+            LoginDao loginDao = new LoginDaoImpl();
+            result = loginDao.readLogin(login);
+            status = "200";
+        } catch (Exception e) {
+            e.printStackTrace();
+            status = "500";
+        }
+        return new BaseResponse(result, status);
+    }
 
     @PostMapping("/delete")
     public BaseResponse delete(@RequestParam(defaultValue="ssss") String key, @RequestBody LoginRequest request) {
