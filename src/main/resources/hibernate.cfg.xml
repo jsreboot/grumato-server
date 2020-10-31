@@ -8,14 +8,13 @@
     <session-factory>
 
         <!-- Настройки подключения к БД -->
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">mu52fe5N</property>
+        <property name="hibernate.connection.username">test</property>
+        <property name="hibernate.connection.password">test</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
         <property name="connection.url">jdbc:mysql://localhost:3306/itcompany?useUnicode=true&amp;serverTimezone=UTC</property>
 
-        <property name="connection.pool_size">5</property>
-
+        <property name="connection.pool_size">1</property>
 
         <!-- SQL диалект -->
         <property name="dialect">

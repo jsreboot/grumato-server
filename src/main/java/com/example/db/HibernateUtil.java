@@ -84,7 +84,7 @@ public class HibernateUtil {
             props.put("hibernate.connection.url", "jdbc:mysql://localhost/Book");
             props.put("hibernate.connection.username", "root");
             props.put("hibernate.connection.password", "");
-//            props.put("hibernate.current_session_context_class", "thread");
+            props.put("hibernate.current_session_context_class", "thread");
 
             configuration.setProperties(props);
 
