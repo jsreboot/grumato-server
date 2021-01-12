@@ -6,6 +6,7 @@ import com.example.db.HibernateUtil;
 import com.example.payments.UsersRequest;
 import com.example.rest.BaseResponse;
 import com.example.testEntity.Employees;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,11 +39,27 @@ public class UserController {
         List<Employees> list = q.getResultList();
         session.close();
         StringBuilder finalResult = new StringBuilder(" ");
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper1 = new ObjectMapper();
+        List<String> results = new ArrayList<>();
+        String result = "know";
         for (Employees leties : list) {
-            finalResult.append(" ID: ").append(leties.getEmployeeCode()).append(" Surname: ").append(leties.getSurname()).append(" Name: ").append(leties.getName()).append(" Date: ")
-                    .append(leties.getPatronymic()).append(" PhoneNumber: ").append(leties.getPhoneNumber()).append(" Direction: ").append(leties.getDirection());
+            try {
+                // convert user object to json string and return it
+               results.add(mapper.writeValueAsString(leties));
+            } catch (IOException e) {
+                // catch various errors
+                e.printStackTrace();
+            }
         }
-        return new BaseResponse(finalResult.toString(), "200");
+
+        try {
+            result = mapper1.writeValueAsString(results);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new BaseResponse(result, "200");
     }
 
     @PostMapping("/add")
