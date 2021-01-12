@@ -23,5 +23,8 @@
         <property name="direction">
             <column name="direction" sql-type="varchar(45)" length="45"/>
         </property>
+        <property name="role">
+            <column name="role" sql-type="varchar(64)" length="64"/>
+        </property>
     </class>
 </hibernate-mapping>

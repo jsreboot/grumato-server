@@ -7,6 +7,7 @@ public class EmployeesEntity {
     private String patronymic;
     private String phoneNumber;
     private String direction;
+    private String role;
 
     public int getEmployeeCode() {
         return employeeCode;
@@ -56,6 +57,14 @@ public class EmployeesEntity {
         this.direction = direction;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,6 +78,7 @@ public class EmployeesEntity {
         if (patronymic != null ? !patronymic.equals(that.patronymic) : that.patronymic != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (direction != null ? !direction.equals(that.direction) : that.direction != null) return false;
+        if (role != null ? !role.equals(that.role) : that.role != null) return false;
 
         return true;
     }
@@ -81,6 +91,7 @@ public class EmployeesEntity {
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (direction != null ? direction.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 }

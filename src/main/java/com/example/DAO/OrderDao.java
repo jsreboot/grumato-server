@@ -5,8 +5,10 @@ import com.example.model.UserModel;
 import com.example.testEntity.Orders;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
 public interface OrderDao {
-    public String createOrder(Orders orders) throws SQLException;
-    public String deleteOrder(Orders orders) throws SQLException;
+    public String createOrder(List orders) throws SQLException, ParseException;
+    public String deleteOrder(Orders orders) throws SQLException, ParseException;
 }

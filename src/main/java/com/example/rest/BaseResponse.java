@@ -1,5 +1,7 @@
 package com.example.rest;
 
+import com.example.testEntity.Employees;
+
 public class BaseResponse {
     private final String status;
     private final String code;

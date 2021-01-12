@@ -6,21 +6,35 @@ import com.example.testEntity.Employees;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+
+
     @Override
-    public String createUser(Employees employees) throws SQLException {
+    public String createUser(List employees) throws SQLException {
         return connectDB(employees, "create");
     }
 
     @Override
     public String deleteUser(Employees employees) throws SQLException {
-        return connectDB(employees, "delete");
+        return connectDB(null, "delete");
     }
 
-    private String connectDB(Employees employees, String methodName) {
+    private String connectDB(List employeeses, String methodName) {
         String result = "";
+        Employees employees = new Employees();
+        LinkedHashMap o = (LinkedHashMap) employeeses.get(0);
+        employees.setSurname(o.get("surname").toString());
+        employees.setName(o.get("name").toString());
+        employees.setPatronymic(o.get("patronymic").toString());
+        employees.setPhoneNumber(o.get("phoneNumber").toString());
+        employees.setDirection(o.get("direction").toString());
+//        employees.setRole(o.get("role").toString());
+
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();

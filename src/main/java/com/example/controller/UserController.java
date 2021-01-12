@@ -5,6 +5,7 @@ import com.example.DAO.impl.UserDaoImpl;
 import com.example.db.HibernateUtil;
 import com.example.payments.UsersRequest;
 import com.example.rest.BaseResponse;
+import com.example.rest.UsersResponse;
 import com.example.testEntity.Employees;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -23,10 +24,9 @@ public class UserController {
     private final String sharedKey = "SHARED_KEY";
 
     @GetMapping
-    public BaseResponse showStatus() {
+    public UsersResponse showStatus() {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
         session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Employees> query = builder.createQuery(Employees.class);
@@ -35,12 +35,7 @@ public class UserController {
         Query<Employees> q = session.createQuery(query);
         List<Employees> list = q.getResultList();
         session.close();
-        StringBuilder finalResult = new StringBuilder(" ");
-        for (Employees leties : list) {
-            finalResult.append(" ID: ").append(leties.getEmployeeCode()).append(" Surname: ").append(leties.getSurname()).append(" Name: ").append(leties.getName()).append(" Date: ")
-                    .append(leties.getPatronymic()).append(" PhoneNumber: ").append(leties.getPhoneNumber()).append(" Direction: ").append(leties.getDirection());
-        }
-        return new BaseResponse(finalResult.toString(), "200");
+        return new UsersResponse(list);
     }
 
     @PostMapping("/add")
@@ -48,13 +43,12 @@ public class UserController {
         String status = "";
         String result = "";
         try {
-            Employees employees = request.getEmployees();
             UserDao userDao = new UserDaoImpl();
-            result = userDao.createUser(employees);
-            status = "200";
+            result = "200";
+            status = userDao.createUser(request.getUserEntry());
         } catch (Exception e) {
-            e.printStackTrace();
-            status = "500";
+            result = "500";
+            status = e.toString();
         }
         return new BaseResponse(status, result);
     }

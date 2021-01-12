@@ -21,6 +21,8 @@ public class Employees implements Serializable {
     private String phoneNumber;
     @Column(name = "direction")
     private String direction;
+//    @Column(name = "role")
+//    private String role;
 
     public int getEmployeeCode() {
         return employeeCode;
@@ -70,6 +72,14 @@ public class Employees implements Serializable {
         this.direction = direction;
     }
 
+//    public String getRole() {
+//        return role;
+//    }
+
+//    public void setRole(String role) {
+//        this.role = role;
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +94,7 @@ public class Employees implements Serializable {
         if (phoneNumber != null ? !phoneNumber.equals(employees.phoneNumber) : employees.phoneNumber != null)
             return false;
         if (direction != null ? !direction.equals(employees.direction) : employees.direction != null) return false;
+//        if (role != null ? !role.equals(employees.role) : employees.role != null) return false;
 
         return true;
     }
@@ -96,6 +107,7 @@ public class Employees implements Serializable {
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (direction != null ? direction.hashCode() : 0);
+//        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 }

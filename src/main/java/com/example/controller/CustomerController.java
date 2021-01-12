@@ -46,13 +46,12 @@ public class CustomerController {
         String status = "";
         String result = "";
         try {
-            Customer customer = request.getCustomer();
             CustomerDao customerDao = new CustomerDaoImpl();
-            result = customerDao.createCustomer(customer);
-            status = "200";
+            result = "200";
+            status = customerDao.createCustomer(request.getCustomerEntry());
         } catch (Exception e) {
-            e.printStackTrace();
-            status = "500";
+            result = "500";
+            status = e.toString();
         }
         return new BaseResponse(status, result);
     }

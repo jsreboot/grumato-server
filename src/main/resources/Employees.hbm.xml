@@ -11,5 +11,6 @@
         <property name="patronymic" column="patronymic"/>
         <property name="phoneNumber" column="phone_number"/>
         <property name="direction" column="direction"/>
+        <property name="role" column="role"/>
     </class>
 </hibernate-mapping>

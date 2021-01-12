@@ -7,6 +7,7 @@ public class UserModel {
     private String Command;
     private String Group;
     private String Project;
+    private String role;
 
     public String getId() {
         return id;
@@ -54,5 +55,13 @@ public class UserModel {
 
     public void setProject(String project) {
         Project = project;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

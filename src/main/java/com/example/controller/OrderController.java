@@ -56,13 +56,12 @@ public class OrderController {
         String status = "";
         String result = "";
         try {
-            Orders orders = request.getOrder();
             OrderDao orderDao = new OrderDaoImpl();
-            result = orderDao.createOrder(orders);
-            status = "200";
+            result = "200";
+            status = orderDao.createOrder(request.getOrderEntry());
         } catch (Exception e) {
-            e.printStackTrace();
-            status = "500";
+            result = "500";
+            status = e.toString();
         }
         return new BaseResponse(status, result);
     }
