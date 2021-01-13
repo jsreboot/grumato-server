@@ -33,6 +33,7 @@ public class OrderDaoImpl implements OrderDao {
                 session.save(orders);
             }
             if (methodName.equals("delete")) {
+                session.load(Orders.class, orders.getOrderCode());
                 session.delete(orders);
             }
             session.getTransaction().commit();

@@ -38,7 +38,6 @@ public class UserController {
         Query<Employees> q = session.createQuery(query);
         List<Employees> list = q.getResultList();
         session.close();
-        StringBuilder finalResult = new StringBuilder(" ");
         ObjectMapper mapper = new ObjectMapper();
         ObjectMapper mapper1 = new ObjectMapper();
         List<String> results = new ArrayList<>();

@@ -6,6 +6,7 @@ import com.example.db.HibernateUtil;
 import com.example.payments.CustomersRequest;
 import com.example.rest.BaseResponse;
 import com.example.testEntity.Customer;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,7 +26,7 @@ public class CustomerController {
     private final String sharedKey = "SHARED_KEY";
 
     @GetMapping
-    public BaseResponse showStatus() {
+    public BaseResponse showStatus() throws IOException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
         session.beginTransaction();
@@ -32,13 +35,17 @@ public class CustomerController {
         Root<Customer> root = query.from(Customer.class);
         query.select(root);
         Query<Customer> q = session.createQuery(query);
-        List<Customer> list = q.getResultList();
-        session.close();
-        StringBuilder finalResult = new StringBuilder(" ");
-        for (Customer leties : list) {
-            finalResult.append(leties.getName()).append(" ");
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper1 = new ObjectMapper();
+        List<Customer> answerDatabase = q.getResultList();
+        List<String> jsonList = new ArrayList<>();
+        String result = "";
+        for (Customer customer : answerDatabase) {
+            jsonList.add(mapper.writeValueAsString(customer));
         }
-        return new BaseResponse(finalResult.toString(), "200");
+        result = mapper1.writeValueAsString(jsonList);
+        session.close();
+        return new BaseResponse(result, "200");
     }
 
     @PostMapping("/add")

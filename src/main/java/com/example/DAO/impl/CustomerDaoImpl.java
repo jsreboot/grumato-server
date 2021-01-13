@@ -3,6 +3,7 @@ package com.example.DAO.impl;
 import com.example.DAO.CustomerDao;
 import com.example.db.HibernateUtil;
 import com.example.testEntity.Customer;
+import com.example.testEntity.Employees;
 import org.hibernate.Session;
 
 public class CustomerDaoImpl implements CustomerDao {
@@ -30,7 +31,8 @@ public class CustomerDaoImpl implements CustomerDao {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
-            session.delete(customer);
+            session.load(Customer.class, customer.getCustomerCode());
+            session.remove(customer);
             session.getTransaction().commit();
             result = "success";
         } catch (Exception e) {
