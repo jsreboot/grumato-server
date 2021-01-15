@@ -11,6 +11,7 @@ import com.example.payments.OrderRequest;
 import com.example.rest.BaseResponse;
 import com.example.testEntity.Customer;
 import com.example.testEntity.Orders;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +34,7 @@ public class OrderController {
     private final String sharedKey = "SHARED_KEY";
 
     @GetMapping
-    public BaseResponse showStatus() {
+    public BaseResponse showStatus() throws IOException {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -43,12 +46,14 @@ public class OrderController {
         Query<Orders> q = session.createQuery(query);
         List<Orders> list = q.getResultList();
         session.close();
-        StringBuilder finalResult = new StringBuilder(" ");
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper1 = new ObjectMapper();
+        List<String> resultList = new ArrayList<>();
         for (Orders leties : list) {
-            finalResult.append(" Description: ").append(leties.getOrderDescription()).append(" Cost: ").append(leties.getOrderCost()).append(" Date: ")
-                    .append(leties.getDateOfReceiptOfOrder());
+            resultList.add(mapper.writeValueAsString(leties));
         }
-        return new BaseResponse(finalResult.toString(), "200");
+        String result = mapper1.writeValueAsString(resultList);
+        return new BaseResponse(result, "200");
     }
 
     @PostMapping("/add")
