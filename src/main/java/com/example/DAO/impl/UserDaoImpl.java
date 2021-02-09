@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
         try {
             session.beginTransaction();
             if (methodName.equals("create") ) {
-                session.save(employees);
+                session.saveOrUpdate(employees);
             }
             if (methodName.equals("delete") ) {
                 session.delete(employees);
