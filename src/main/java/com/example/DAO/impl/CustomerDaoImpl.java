@@ -13,7 +13,7 @@ public class CustomerDaoImpl implements CustomerDao {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
-            session.save(customer);
+            session.saveOrUpdate(customer);
             session.getTransaction().commit();
             result = "success";
         } catch (Exception e) {
