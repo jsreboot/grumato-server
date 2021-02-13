@@ -2,26 +2,43 @@ package com.example.DAO.impl;
 
 import com.example.DAO.UserDao;
 import com.example.db.HibernateUtil;
-import com.example.entity.EmployeesEntity;
 import com.example.testEntity.Employees;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-import java.sql.SQLException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
     @Override
-    public String createUser(Employees employees) throws SQLException {
+    public List<Employees> getEmployees() {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Employees> query = builder.createQuery(Employees.class);
+        Root<Employees> root = query.from(Employees.class);
+        query.select(root);
+        Query<Employees> q = session.createQuery(query);
+        List<Employees> resultList = q.getResultList();
+        session.close();
+        return resultList;
+    }
+
+    @Override
+    public String createUser(Employees employees) {
         return connectDB(employees, "create");
     }
 
     @Override
-    public String deleteUser(Employees employees) throws SQLException {
+    public String deleteUser(Employees employees) {
         String result = "";
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session.load(Employees.class, employees.getEmployeeCode());
-//        Employees employees1 = session.get(Employees.class, employees.getEmployeeCode());
         session.remove(employees);
         session.getTransaction().commit();
         session.close();
@@ -34,10 +51,10 @@ public class UserDaoImpl implements UserDao {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
-            if (methodName.equals("create") ) {
-                session.save(employees);
+            if (methodName.equals("create")) {
+                session.saveOrUpdate(employees);
             }
-            if (methodName.equals("delete") ) {
+            if (methodName.equals("delete")) {
                 session.delete(employees);
             }
             session.getTransaction().commit();
