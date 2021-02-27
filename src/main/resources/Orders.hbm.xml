@@ -10,7 +10,7 @@
         <property name="customerCode" column="customer_code"/>
         <property name="dateOfReceiptOfOrder" column="date_of_receipt_of_order"/>
         <property name="orderExecutionDate" column="order_execution_date"/>
-        <property name="productCode" column="product_code"/>
         <property name="orderCost" column="order_cost"/>
+        <property name="orderName" column="order_name"/>
     </class>
 </hibernate-mapping>

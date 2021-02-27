@@ -20,10 +20,18 @@ public class Orders implements Serializable {
     private Date dateOfReceiptOfOrder;
     @Column(name = "order_execution_date")
     private Date orderExecutionDate;
-    @Column(name = "product_code")
-    private int productCode;
     @Column(name = "order_cost")
     private String orderCost;
+    @Column(name = "order_name")
+    private String orderName;
+
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
+    }
 
     public int getOrderCode() {
         return orderCode;
@@ -65,14 +73,6 @@ public class Orders implements Serializable {
         this.orderExecutionDate = orderExecutionDate;
     }
 
-    public int getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(int productCode) {
-        this.productCode = productCode;
-    }
-
     public String getOrderCost() {
         return orderCost;
     }
@@ -90,7 +90,6 @@ public class Orders implements Serializable {
 
         if (orderCode != orders.orderCode) return false;
         if (customerCode != orders.customerCode) return false;
-        if (productCode != orders.productCode) return false;
         if (orderDescription != null ? !orderDescription.equals(orders.orderDescription) : orders.orderDescription != null)
             return false;
         if (dateOfReceiptOfOrder != null ? !dateOfReceiptOfOrder.equals(orders.dateOfReceiptOfOrder) : orders.dateOfReceiptOfOrder != null)
@@ -107,9 +106,9 @@ public class Orders implements Serializable {
         int result = orderCode;
         result = 31 * result + (orderDescription != null ? orderDescription.hashCode() : 0);
         result = 31 * result + customerCode;
+        result = 31 * result + (orderName != null ? orderName.hashCode() : 0);
         result = 31 * result + (dateOfReceiptOfOrder != null ? dateOfReceiptOfOrder.hashCode() : 0);
         result = 31 * result + (orderExecutionDate != null ? orderExecutionDate.hashCode() : 0);
-        result = 31 * result + productCode;
         result = 31 * result + (orderCost != null ? orderCost.hashCode() : 0);
         return result;
     }

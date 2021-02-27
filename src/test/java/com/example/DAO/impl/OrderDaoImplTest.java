@@ -34,7 +34,6 @@ public class OrderDaoImplTest {
     private Orders createTestOrder() {
         Orders orders = new Orders();
         orders.setOrderCost("11");
-        orders.setProductCode(11);
         orders.setOrderExecutionDate(new Date());
         orders.setDateOfReceiptOfOrder(new Date());
         orders.setCustomerCode(11);
