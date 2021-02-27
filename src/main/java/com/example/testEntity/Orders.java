@@ -97,6 +97,7 @@ public class Orders implements Serializable {
         if (orderExecutionDate != null ? !orderExecutionDate.equals(orders.orderExecutionDate) : orders.orderExecutionDate != null)
             return false;
         if (orderCost != null ? !orderCost.equals(orders.orderCost) : orders.orderCost != null) return false;
+        if (orderName != null ? !orderName.equals(orders.orderName) : orders.orderName != null) return false;
 
         return true;
     }
