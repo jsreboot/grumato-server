@@ -12,5 +12,6 @@
         <property name="phoneNumber" column="phone_number"/>
         <property name="direction" column="direction"/>
         <property name="project" column="project"/>
+        <property name="userAvatar" column="user_avatar"/>
     </class>
 </hibernate-mapping>

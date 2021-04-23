@@ -51,7 +51,7 @@ public class Customer implements Serializable {
         this.patronymic = patronymic;
     }
 
-    public String getCustomerCol() {
+    public String getCustomercol() {
         return customercol;
     }
 

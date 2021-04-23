@@ -7,6 +7,8 @@ public class EmployeesEntity {
     private String patronymic;
     private String phoneNumber;
     private String direction;
+    private String project;
+    private String userAvatar;
 
     public int getEmployeeCode() {
         return employeeCode;
@@ -56,6 +58,22 @@ public class EmployeesEntity {
         this.direction = direction;
     }
 
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,6 +87,8 @@ public class EmployeesEntity {
         if (patronymic != null ? !patronymic.equals(that.patronymic) : that.patronymic != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (direction != null ? !direction.equals(that.direction) : that.direction != null) return false;
+        if (project != null ? !project.equals(that.project) : that.project != null) return false;
+        if (userAvatar != null ? !userAvatar.equals(that.userAvatar) : that.userAvatar != null) return false;
 
         return true;
     }
@@ -81,6 +101,8 @@ public class EmployeesEntity {
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (direction != null ? direction.hashCode() : 0);
+        result = 31 * result + (project != null ? project.hashCode() : 0);
+        result = 31 * result + (userAvatar != null ? userAvatar.hashCode() : 0);
         return result;
     }
 }

@@ -17,7 +17,7 @@
         <property name="patronymic">
             <column name="patronymic" sql-type="varchar(45)" length="45"/>
         </property>
-        <property name="getCustomerCol">
+        <property name="customercol">
             <column name="customercol" sql-type="varchar(45)" length="45"/>
         </property>
         <property name="company">

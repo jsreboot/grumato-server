@@ -9,7 +9,7 @@
         <property name="surname" column="surname"/>
         <property name="name" column="name"/>
         <property name="patronymic" column="patronymic"/>
-        <property name="getCustomerCol" column="customercol"/>
+        <property name="customercol" column="customercol"/>
         <property name="company" column="company"/>
         <property name="companyNumber" column="company_number"/>
         <property name="id" column="id"/>
