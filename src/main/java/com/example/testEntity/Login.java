@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Login implements Serializable {
@@ -15,6 +16,8 @@ public class Login implements Serializable {
     private String userName;
     @Column(name = "user_password")
     private String userPassword;
+    @Column(name = "user_type")
+    private String userType;
 
     public int getUserId() {
         return userId;
@@ -40,6 +43,10 @@ public class Login implements Serializable {
         this.userPassword = userPassword;
     }
 
+    public String getUserType() { return userType; }
+
+    public void setUserType(String userType) { this.userType = userType; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,9 +55,9 @@ public class Login implements Serializable {
         Login login = (Login) o;
 
         if (userId != login.userId) return false;
-        if (userName != null ? !userName.equals(login.userName) : login.userName != null) return false;
-        if (userPassword != null ? !userPassword.equals(login.userPassword) : login.userPassword != null) return false;
-
+        if (!Objects.equals(userName, login.userName)) return false;
+        if (!Objects.equals(userPassword, login.userPassword)) return false;
+        if (!Objects.equals(userType, login.userType)) return false;
         return true;
     }
 
@@ -59,6 +66,7 @@ public class Login implements Serializable {
         int result = userId;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
     }
 }
