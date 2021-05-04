@@ -87,4 +87,20 @@ public class LoginController {
         }
         return new BaseResponse(status, result);
     }
+
+    @PostMapping("/isAvailableUserName")
+    public BaseResponse isAvailableUserName(@RequestParam(defaultValue="SHARED_KEY") String key, @RequestBody LoginRequest request) {
+        String status = "";
+        String result = "";
+        try {
+            Login login = request.getLogin();
+            LoginDao loginDao = new LoginDaoImpl();
+            result = loginDao.readLogin(login);
+            status = "200";
+        } catch (Exception e) {
+            e.printStackTrace();
+            status = "500";
+        }
+        return new BaseResponse(result, status);
+    }
 }
